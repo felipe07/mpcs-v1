@@ -1,0 +1,58 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+
+    <display-name>Mountain Pictures Collection System</display-name>
+
+    <context-param>
+        <param-name>productionMode</param-name>
+        <param-value>false</param-value>
+        <description>Mountain Pictures Collection System</description>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/applicationContext.xml
+            /WEB-INF/rpcServices-servlet.xml
+            /WEB-INF/scheduler.xml,
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>UIProvider</param-name>
+        <param-value>it.polimi.awt.SpringUIProvider</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>it.polimi.awt.AppServices</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+        <init-param>
+            <param-name>UI</param-name>
+            <param-value>it.polimi.awt.dashboard.ui.Dashboard</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>rpcServices</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>rpcServices</servlet-name>
+        <url-pattern>/external-services/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

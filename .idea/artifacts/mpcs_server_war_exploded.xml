@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="mpcs-server:war exploded">
+    <output-path>$PROJECT_DIR$/target/mpcs-client</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="mpcs" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="mpcs/web/Web" />
+    </root>
+  </artifact>
+</component>
